@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" hgap="20" vgap="20" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.nikitos.homeflow.Controller.LoginController">
+    <stylesheets>
+        <URL value="@Styles/login_page_style.css"/>
+    </stylesheets>
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="35.0" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="30.0" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="35" vgrow="ALWAYS" />
+    </rowConstraints>
+
+
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="0"
+           GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+           textAlignment="CENTER" alignment="CENTER"
+           text="АВТОРИЗАЦИЯ"
+           maxWidth="Infinity" maxHeight="Infinity"
+           styleClass="label-header"
+           fx:id="login_Label"/>
+
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="2"
+            GridPane.halignment="CENTER" GridPane.valignment="CENTER"
+            textAlignment="CENTER" alignment="CENTER"
+            text="Войти как клиент"
+            maxWidth="250" maxHeight="100"
+            styleClass="button-login-client"
+            onAction="#handleClientLogin">
+    </Button>
+
+
+    <Button GridPane.columnIndex="2" GridPane.rowIndex="2"
+            GridPane.halignment="CENTER" GridPane.valignment="CENTER"
+            textAlignment="CENTER" alignment="CENTER"
+            text="Войти как оператор"
+            maxWidth="250" maxHeight="100"
+            styleClass="button-login-operator"
+            onAction="#handleOperatorLogin"/>
+
+
+
+</GridPane>

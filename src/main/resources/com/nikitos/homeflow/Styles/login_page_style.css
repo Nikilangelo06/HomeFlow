@@ -1,0 +1,52 @@
+/***************   Заголовок -АВТОРИЗАЦИЯ-   ***************/
+.label-header {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+}
+
+
+
+/***************   Кнопка -ВОЙТИ КАК КЛИЕНТ-   ***************/
+.button-login-client {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 0;
+    -fx-background-color: lightgreen;
+}
+
+/* При наведении */
+.button-login-client:hover {
+    -fx-background-color: green;
+}
+
+/* Стиль при клике */
+.button-login-client:pressed {
+    -fx-background-color: darkgreen;
+    -fx-background-radius: 5px;
+}
+
+
+
+/***************   Кнопка -ВОЙТИ КАК ДИСПЕТЧЕР-   ***************/
+.button-login-operator {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 0;
+    -fx-background-color: #38bde8;
+}
+
+/* При наведении */
+.button-login-operator:hover {
+    -fx-background-color: #5757f8;
+}
+
+/* Стиль при клике */
+.button-login-operator:pressed {
+    -fx-background-color: #3e3edc;
+    -fx-background-radius: 5px;
+}
