@@ -33,8 +33,7 @@
            textAlignment="CENTER" alignment="CENTER"
            text="АВТОРИЗАЦИЯ"
            maxWidth="Infinity" maxHeight="Infinity"
-           styleClass="label-header"
-           fx:id="login_Label"/>
+           styleClass="label-header"/>
 
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="2"

@@ -11,7 +11,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login_page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setTitle("HomeFlow - система жилищно-коммунальных услуг");
         stage.setScene(scene);
         stage.show();

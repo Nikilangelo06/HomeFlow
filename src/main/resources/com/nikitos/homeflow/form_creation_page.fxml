@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<GridPane alignment="CENTER" vgap="20" hgap="20" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.nikitos.homeflow.Controller.FormCreationController">
+    <stylesheets>
+        <URL value="@Styles/form_creation_page_style.css"/>
+    </stylesheets>
+
+    <rowConstraints>
+        <RowConstraints percentHeight="10" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="15" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="60" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="15" vgrow="ALWAYS"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+
+
+    <Button GridPane.rowIndex="0"
+            GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+            textAlignment="CENTER" alignment="CENTER"
+            text="←"
+            maxWidth="75" maxHeight="75"
+            styleClass="button-back"
+            onAction="#handleClickBackButton"/>
+
+
+    <Label GridPane.rowIndex="1"
+           GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+           textAlignment="CENTER" alignment="CENTER"
+           text="Составление заявки"
+           maxWidth="Infinity" maxHeight="Infinity"
+           styleClass="label-header"/>
+
+
+    <GridPane GridPane.rowIndex="2" hgap="20" vgap="20">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="55"/>
+        </rowConstraints>
+
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="0"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="ФИО"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-creation-form"/>
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="Адрес"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-creation-form"/>
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="Телефон"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-creation-form"/>
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="Кто вам нужен?"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-creation-form"/>
+
+
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="0"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   promptText="Введите ФИО" maxHeight="Infinity" maxWidth="Infinity"
+                   styleClass="text-field-creation-form"
+                   fx:id="fullName_TextField"/>
+
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   promptText="Введите адрес" maxHeight="Infinity" maxWidth="Infinity"
+                   styleClass="text-field-creation-form"
+                   fx:id="address_TextField"/>
+
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   promptText="Введите телефон" maxHeight="Infinity" maxWidth="Infinity"
+                   styleClass="text-field-creation-form"
+                   fx:id="telephone_TextField"/>
+
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="3"
+              GridPane.valignment="CENTER" GridPane.halignment="CENTER" alignment="CENTER_LEFT">
+            <CheckBox text="Газовщик" fx:id="gasman_CheckBox" styleClass="checkbox-form-creation"/>
+            <CheckBox text="Сантехник" fx:id="plumber_CheckBox" styleClass="checkbox-form-creation"/>
+            <CheckBox text="Слесарь" fx:id="fitter_CheckBox" styleClass="checkbox-form-creation"/>
+            <CheckBox text="Электрик" fx:id="electric_CheckBox" styleClass="checkbox-form-creation"/>
+        </VBox>
+    </GridPane>
+
+
+    <Button GridPane.rowIndex="3"
+            GridPane.halignment="CENTER" GridPane.valignment="CENTER"
+            textAlignment="CENTER" alignment="CENTER"
+            text="Отправить заявку"
+            maxWidth="250" maxHeight="100"
+            styleClass="button-create-request"
+            onAction="#handleSendRequest"/>
+
+</GridPane>

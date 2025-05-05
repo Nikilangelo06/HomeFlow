@@ -1,0 +1,106 @@
+/***************   Заголовок -АВТОРИЗАЦИЯ-   ***************/
+.label-header {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+}
+
+
+
+/***************   Кнопка -ОСТАВИТЬ ЗАЯВКУ-   ***************/
+.button-create-request {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 0;
+    -fx-background-color: lightgreen;
+}
+
+/* При наведении */
+.button-create-request:hover {
+    -fx-background-color: green;
+}
+
+/* Стиль при клике */
+.button-create-request:pressed {
+    -fx-background-color: darkgreen;
+    -fx-background-radius: 5px;
+}
+
+
+/***************   Кнопка -НАЗАД-   ***************/
+.button-back {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 20px;    /* Радиус углов для закругления */
+    -fx-background-color: orange;
+}
+
+/* При наведении */
+.button-back:hover {
+    -fx-background-color: darkorange;
+}
+
+/* Стиль при клике */
+.button-back:pressed {
+    -fx-background-color: #da7b02;
+    -fx-background-radius: 5px;
+}
+
+
+
+/***************   Надписи перед заполнением   ***************/
+.label-creation-form {
+    -fx-text-fill: black;
+    -fx-font-weight: normal;
+    -fx-font-size: 24px;
+    -fx-padding: 10px 20px 10px 20px; /* Отступы сверху, справа, снизу, слева */
+}
+
+
+
+/***************   Поля для заполнением   ***************/
+.text-field-creation-form {
+    -fx-prompt-text-fill: grey;
+}
+
+
+
+/***************   CheckBox-ы для выбора   ***************/
+.checkbox-form-creation {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-padding: 5px 10px;
+}
+
+.checkbox-form-creation .box {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #888;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+    -fx-alignment: center;
+}
+
+.checkbox-form-creation:hover .box {
+    -fx-background-color: #ddd;
+}
+
+.checkbox-form-creation:selected .box {
+    -fx-background-color: #4CAF50;
+    -fx-border-color: #388E3C;
+}
+
+.checkbox-form-creation:selected .mark {
+    -fx-background-color: white;
+}
+
+.checkbox-form-creation:disabled {
+    -fx-opacity: 0.5;
+}
+
+
+

@@ -1,19 +1,25 @@
 package com.nikitos.homeflow.Controller;
 
+import com.nikitos.homeflow.MainApp;
+import com.nikitos.homeflow.Util.AlertHelper;
+import com.nikitos.homeflow.Util.PageHelper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class LoginController {
     @FXML
-    private Label login_Label;
-
-    @FXML
-    protected void handleClientLogin() {
-        login_Label.setText("NikitOS");
+    protected void handleClientLogin(ActionEvent event) {
+        // Переходим на страницу "Составления заявки"
+        PageHelper.goToPage("form_creation_page.fxml", event);
     }
 
     @FXML
     protected void handleOperatorLogin() {
-        login_Label.setText("KingArtur1000");
+        AlertHelper.showAlert("фыафыафыаыф");
     }
 }
