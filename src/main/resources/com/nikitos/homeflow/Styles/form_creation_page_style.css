@@ -29,10 +29,11 @@
 }
 
 
+
 /***************   Кнопка -НАЗАД-   ***************/
 .button-back {
     -fx-text-fill: white;   /* Цвет текста*/
-    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-size: 20px;    /* Размер шрифта */
     -fx-font-weight: bold;  /* Жирность текста */
     -fx-background-radius: 20px;    /* Радиус углов для закругления */
     -fx-background-color: orange;

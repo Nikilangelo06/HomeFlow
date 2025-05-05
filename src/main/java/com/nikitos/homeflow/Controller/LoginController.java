@@ -19,7 +19,7 @@ public class LoginController {
     }
 
     @FXML
-    protected void handleOperatorLogin() {
-        AlertHelper.showAlert("фыафыафыаыф");
+    protected void handleOperatorLogin(ActionEvent event) {
+        PageHelper.goToPage("password_operator_page.fxml", event);
     }
 }
