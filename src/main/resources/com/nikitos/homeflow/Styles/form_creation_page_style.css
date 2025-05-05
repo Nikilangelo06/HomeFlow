@@ -36,6 +36,7 @@
     -fx-font-weight: bold;  /* Жирность текста */
     -fx-background-radius: 20px;    /* Радиус углов для закругления */
     -fx-background-color: orange;
+    -fx-background-insets: 10 10 10 10; /* Отступы */
 }
 
 /* При наведении */
