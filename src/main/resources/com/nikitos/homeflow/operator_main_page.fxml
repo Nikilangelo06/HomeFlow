@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+
+
+
+<TabPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.nikitos.homeflow.Controller.OperatorMainController"
+         maxWidth="Infinity" maxHeight="Infinity" minWidth="Infinity" minHeight="Infinity"
+         styleClass="tab-pane-operator-main">
+    <stylesheets>
+        <URL value="@Styles/operator_main_page_style.css"/>
+    </stylesheets>
+
+
+
+    <!-- Вкладка -ЗАЯВКИ- -->
+    <Tab text="Заявки" closable="false">
+
+        <!-- Заголовочный GridPane -->
+        <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="50"/>
+            </rowConstraints>
+
+
+            <Label GridPane.columnIndex="0"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   textAlignment="CENTER" alignment="CENTER"
+                   text="Адрес"
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   styleClass="label-header"/>
+
+            <Label GridPane.columnIndex="1"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   textAlignment="CENTER" alignment="CENTER"
+                   text="ФИО"
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   styleClass="label-header"/>
+
+            <Label GridPane.columnIndex="2"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   textAlignment="CENTER" alignment="CENTER"
+                   text="Телефон"
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   styleClass="label-header"/>
+
+            <Label GridPane.columnIndex="3"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   textAlignment="CENTER" alignment="CENTER"
+                   text="Кто нужен?"
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   styleClass="label-header"/>
+
+            <Label GridPane.columnIndex="4"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   textAlignment="CENTER" alignment="CENTER"
+                   text="Дата"
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   styleClass="label-header"/>
+
+            <Label GridPane.columnIndex="5"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   textAlignment="CENTER" alignment="CENTER"
+                   text="Форм. Бриг."
+                   maxWidth="Infinity" maxHeight="Infinity"
+                   styleClass="label-header"/>
+
+        </GridPane>
+    </Tab>
+</TabPane>
+
+

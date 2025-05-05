@@ -13,6 +13,6 @@ public class PasswordOperatorController {
 
     @FXML
     protected void handleClickEnterButton(ActionEvent event) {
-        AlertHelper.showAlert("Вход в систему...");
+        PageHelper.goToPage("operator_main_page.fxml", event);
     }
 }

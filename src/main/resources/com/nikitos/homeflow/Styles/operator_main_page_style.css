@@ -1,0 +1,19 @@
+/***************   Заголовок -АВТОРИЗАЦИЯ-   ***************/
+.label-header {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+
+
+/***************   TabPane   ***************/
+.tab-pane-operator-main {
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+
+    /* Задание ширины вкладки */
+    -fx-tab-min-width: 150px;
+    -fx-tab-max-width: 300px;
+}
