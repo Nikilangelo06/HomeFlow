@@ -145,6 +145,108 @@
         </VBox>
 
     </Tab>
+
+
+
+    <!-- Вкладка -РАБОЧИЕ- -->
+    <Tab text="Рабочие" closable="false">
+        <VBox>
+            <Button textAlignment="CENTER"
+                    text="←"
+                    maxWidth="75" maxHeight="75"
+                    styleClass="button-back-operator-main"
+                    onAction="#handleClickBackButton"/>
+
+            <!-- Заголовочный GridPane -->
+            <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="50" prefHeight="50"/>
+                </rowConstraints>
+
+
+                <Label GridPane.columnIndex="0"
+                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" alignment="CENTER"
+                       text="ФИО"
+                       maxWidth="Infinity" maxHeight="Infinity"
+                       styleClass="label-header-operator-main"/>
+
+                <Label GridPane.columnIndex="1"
+                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" alignment="CENTER"
+                       text="Квалификация"
+                       maxWidth="Infinity" maxHeight="Infinity"
+                       styleClass="label-header-operator-main"/>
+
+                <Label GridPane.columnIndex="2"
+                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" alignment="CENTER"
+                       text="Телефон"
+                       maxWidth="Infinity" maxHeight="Infinity"
+                       styleClass="label-header-operator-main"/>
+
+
+            </GridPane>
+
+
+            <!-- Список необработанных заявок -->
+            <VBox>
+                <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="75" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+
+
+                    <TextArea GridPane.columnIndex="0"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="Борсук Ростислав Александрович" wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
+
+                    <TextArea GridPane.columnIndex="1"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="Электрик" wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
+
+                    <TextArea GridPane.columnIndex="2"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="+375-29-123-45-67" wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
+
+
+                    <Button GridPane.columnIndex="3"
+                            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                            text="→" wrapText="true"
+                            maxWidth="Infinity" maxHeight="Infinity"
+                            styleClass="button-edit-worker"/>
+
+                    <Button GridPane.columnIndex="4"
+                            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                            text="X" wrapText="true"
+                            maxWidth="Infinity" maxHeight="Infinity"
+                            styleClass="button-delete-worker"/>
+
+                </GridPane>
+            </VBox>
+        </VBox>
+
+    </Tab>
 </TabPane>
 
 
