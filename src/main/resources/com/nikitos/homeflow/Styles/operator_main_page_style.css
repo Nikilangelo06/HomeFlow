@@ -142,3 +142,26 @@
     -fx-background-color: #da7b02;
     -fx-background-radius: 5px;
 }
+
+
+
+/***************   Кнопка -ДОБАВИТЬ РАБОТНИКА-   ***************/
+.button-add-worker {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 20px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 10 10 10 10;
+    -fx-background-color: lightgreen;
+}
+
+/* При наведении */
+.button-add-worker:hover {
+    -fx-background-color: green;
+}
+
+/* Стиль при клике */
+.button-add-worker:pressed {
+    -fx-background-color: darkgreen;
+    -fx-background-radius: 5px;
+}
