@@ -1,5 +1,12 @@
 package com.nikitos.homeflow.Controller;
 
-public class OperatorMainController {
+import com.nikitos.homeflow.Util.PageHelper;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
+public class OperatorMainController {
+    @FXML
+    protected void handleClickBackButton(ActionEvent event) {
+        PageHelper.goToPage("password_operator_page.fxml", event);
+    }
 }

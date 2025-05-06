@@ -21,18 +21,25 @@
     <!-- Вкладка -ЗАЯВКИ- -->
     <Tab text="Заявки" closable="false">
         <VBox>
+            <Button textAlignment="CENTER"
+                    text="←"
+                    maxWidth="75" maxHeight="75"
+                    styleClass="button-back-operator-main"
+                    onAction="#handleClickBackButton"/>
+
             <!-- Заголовочный GridPane -->
             <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints maxHeight="50"/>
+                    <RowConstraints maxHeight="50" prefHeight="50"/>
                 </rowConstraints>
 
 
@@ -41,42 +48,36 @@
                        textAlignment="CENTER" alignment="CENTER"
                        text="Адрес"
                        maxWidth="Infinity" maxHeight="Infinity"
-                       styleClass="label-header"/>
+                       styleClass="label-header-operator-main"/>
 
                 <Label GridPane.columnIndex="1"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
                        text="ФИО"
                        maxWidth="Infinity" maxHeight="Infinity"
-                       styleClass="label-header"/>
+                       styleClass="label-header-operator-main"/>
 
                 <Label GridPane.columnIndex="2"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
                        text="Телефон"
                        maxWidth="Infinity" maxHeight="Infinity"
-                       styleClass="label-header"/>
+                       styleClass="label-header-operator-main"/>
 
                 <Label GridPane.columnIndex="3"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
                        text="Кто нужен?"
                        maxWidth="Infinity" maxHeight="Infinity"
-                       styleClass="label-header"/>
+                       styleClass="label-header-operator-main"/>
 
                 <Label GridPane.columnIndex="4"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
                        text="Дата"
                        maxWidth="Infinity" maxHeight="Infinity"
-                       styleClass="label-header"/>
+                       styleClass="label-header-operator-main"/>
 
-                <Label GridPane.columnIndex="5"
-                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                       textAlignment="CENTER" alignment="CENTER"
-                       text="Форм. Бриг."
-                       maxWidth="Infinity" maxHeight="Infinity"
-                       styleClass="label-header"/>
             </GridPane>
 
 
@@ -84,55 +85,61 @@
             <VBox>
                 <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="50"/>
+                        <RowConstraints maxHeight="75" vgrow="SOMETIMES"/>
                     </rowConstraints>
 
 
-                    <TextField GridPane.columnIndex="0"
-                               GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               alignment="CENTER"
-                               text="тут адрес"
-                               maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="label-header" editable="false"/>
+                    <TextArea GridPane.columnIndex="0"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="тут адрес" wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextField GridPane.columnIndex="1"
-                               GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               alignment="CENTER"
-                               text="Павловский Никита Сергеевич"
-                               maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="label-header" editable="false"/>
+                    <TextArea GridPane.columnIndex="1"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="Павловский Никита Сергеевич" wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextField GridPane.columnIndex="2"
-                               GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               alignment="CENTER" text="+375-29-578-47-23"
-                               maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="label-header" editable="false"/>
+                    <TextArea GridPane.columnIndex="2"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="+375-29-578-47-23" wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextField GridPane.columnIndex="3"
+                    <TextArea GridPane.columnIndex="3"
                                GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               text="электрик, сантехник, газовщик, слесарь"
+                               text="электрик, сантехник, газовщик" wrapText="true"
                                maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="label-header" editable="false" />
+                               styleClass="text-area-operator-main" editable="false" />
 
-                    <TextField GridPane.columnIndex="4"
-                               GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               alignment="CENTER" text="Тут дата "
-                               maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="label-header" editable="false"/>
+                    <TextArea GridPane.columnIndex="4"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                              text="Тут дата " wrapText="true"
+                              maxWidth="Infinity" maxHeight="Infinity"
+                              styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextField GridPane.columnIndex="5"
-                               GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               alignment="CENTER" text="Перейти"
-                               maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="label-header" editable="false"/>
+                    <Button GridPane.columnIndex="5"
+                            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                            text="X" wrapText="true"
+                            maxWidth="Infinity" maxHeight="Infinity"
+                            styleClass="button-delete-form"/>
+
+                    <Button GridPane.columnIndex="6"
+                            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                            text="→" wrapText="true"
+                            maxWidth="Infinity" maxHeight="Infinity"
+                            styleClass="button-complete-brigade"/>
+
                 </GridPane>
             </VBox>
         </VBox>

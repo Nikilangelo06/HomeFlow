@@ -1,8 +1,17 @@
-/***************   Заголовок -АВТОРИЗАЦИЯ-   ***************/
-.label-header {
+/***************   Заголовочные надписи   ***************/
+.label-header-operator-main {
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
+}
+
+
+
+/***************   Текстовое поле информации   ***************/
+.text-area-operator-main {
+    -fx-text-fill: black;
+    -fx-font-weight: normal;
+    -fx-font-size: 18px;
 }
 
 
@@ -16,4 +25,73 @@
     /* Задание ширины вкладки */
     -fx-tab-min-width: 150px;
     -fx-tab-max-width: 300px;
+}
+
+
+
+/***************   Кнопка -СОБРАТЬ БРИГАДУ-   ***************/
+.button-complete-brigade {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 30px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 10 10 10 10;
+    -fx-background-color: lightgreen;
+}
+
+/* При наведении */
+.button-complete-brigade:hover {
+    -fx-background-color: green;
+}
+
+/* Стиль при клике */
+.button-complete-brigade:pressed {
+    -fx-background-color: darkgreen;
+    -fx-background-radius: 5px;
+}
+
+
+
+/***************   Кнопка -УДАЛИТЬ ЗАЯВКУ-   ***************/
+.button-delete-form {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 10 10 10 10;
+    -fx-background-color: #ff4747;
+}
+
+/* При наведении */
+.button-delete-form:hover {
+    -fx-background-color: red;
+}
+
+/* Стиль при клике */
+.button-delete-form:pressed {
+    -fx-background-color: darkred;
+    -fx-background-radius: 5px;
+}
+
+
+
+/***************   Кнопка -НАЗАД-   ***************/
+.button-back-operator-main {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 28px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 20px;    /* Радиус углов для закругления */
+    -fx-background-color: orange;
+    -fx-background-insets: 5 10 5 10; /* Отступы */
+}
+
+/* При наведении */
+.button-back-operator-main:hover {
+    -fx-background-color: darkorange;
+}
+
+/* Стиль при клике */
+.button-back-operator-main:pressed {
+    -fx-background-color: #da7b02;
+    -fx-background-radius: 5px;
 }
