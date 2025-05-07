@@ -29,7 +29,7 @@ public class OperatorMainController {
             GridPane page = loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Редактирование водителя");
+            dialogStage.setTitle("Добавление работника");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(MainApp.getPrimaryStage());
             Scene scene = new Scene(page);

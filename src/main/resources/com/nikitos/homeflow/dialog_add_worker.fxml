@@ -54,10 +54,9 @@
             <ColumnConstraints hgrow="ALWAYS"/>
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
-            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
-            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
-            <RowConstraints vgrow="ALWAYS" percentHeight="55"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="33"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="33"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="33"/>
         </rowConstraints>
 
 
@@ -67,19 +66,18 @@
                maxWidth="Infinity" maxHeight="Infinity"
                styleClass="label-form-add-worker"/>
 
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="Телефон"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-form-add-worker"/>
 
-        <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
                GridPane.valignment="CENTER" GridPane.halignment="LEFT"
                text="Профессия"
                maxWidth="Infinity" maxHeight="Infinity"
                styleClass="label-form-add-worker"/>
 
-
-        <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
-               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
-               text="Телефон"
-               maxWidth="Infinity" maxHeight="Infinity"
-               styleClass="label-form-add-worker"/>
 
 
 
