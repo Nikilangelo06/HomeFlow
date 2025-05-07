@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<GridPane alignment="CENTER" vgap="20" hgap="20" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.nikitos.homeflow.Controller.AddControllers.DialogAddWorkerController">
+    <stylesheets>
+        <URL value="@Styles/dialog_add_worker_style.css"/>
+    </stylesheets>
+
+    <rowConstraints>
+        <RowConstraints percentHeight="10" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="15" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="60" vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="15" vgrow="ALWAYS"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+
+
+    <Button GridPane.rowIndex="0"
+            GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+            textAlignment="CENTER" alignment="CENTER"
+            text="←"
+            maxWidth="75" maxHeight="75"
+            styleClass="button-back-form-add-worker"
+            onAction="#handleClickBackButton"/>
+
+
+    <Label GridPane.rowIndex="1"
+           GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+           textAlignment="CENTER" alignment="CENTER"
+           text="Добавление работника"
+           maxWidth="Infinity" maxHeight="Infinity"
+           styleClass="label-header-form-add-worker"/>
+
+
+    <GridPane GridPane.rowIndex="2" hgap="20" vgap="20">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="15"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="55"/>
+        </rowConstraints>
+
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="0"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="ФИО"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-form-add-worker"/>
+
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="Профессия"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-form-add-worker"/>
+
+
+        <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+               GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+               text="Телефон"
+               maxWidth="Infinity" maxHeight="Infinity"
+               styleClass="label-form-add-worker"/>
+
+
+
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="0"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   promptText="Введите ФИО" maxHeight="Infinity" maxWidth="Infinity"
+                   styleClass="text-field-creation-form"
+                   fx:id="fullName_TextField"/>
+
+        <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                  promptText="Выберите профессию"
+                  maxHeight="Infinity" maxWidth="Infinity"
+                  styleClass="combobox-form-add-worker" fx:id="profession_ComboBox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Газовщик"/>
+                    <String fx:value="Сантехник"/>
+                    <String fx:value="Слесарь"/>
+                    <String fx:value="Электрик"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"
+                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                   promptText="Введите телефон" maxHeight="Infinity" maxWidth="Infinity"
+                   styleClass="text-field-creation-form"
+                   fx:id="telephone_TextField"/>
+
+    </GridPane>
+
+
+    <Button GridPane.rowIndex="3"
+            GridPane.halignment="CENTER" GridPane.valignment="CENTER"
+            textAlignment="CENTER" alignment="CENTER"
+            text="Сохранить"
+            maxWidth="250" maxHeight="100"
+            styleClass="button-add-worker-form-add-worker"
+            onAction="#handleClickSaveButton"/>
+
+</GridPane>
