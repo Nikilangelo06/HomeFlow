@@ -48,39 +48,15 @@ public class WorkerDAO {
 
 
     // Удаление работника
-    public static void deleteWorker(int driverId) throws SQLException {
+    public static void deleteWorker(int workerId) throws SQLException {
         String sql = "DELETE FROM workers WHERE worker_id = ?";
         try (Connection conn = DataBaseHandler.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, driverId);
+            pstmt.setInt(1, workerId);
             int rowsUpdated = pstmt.executeUpdate();
 
             if (rowsUpdated > 0) {
                 System.out.println("Работник успешно удален!");
-            } else {
-                throw new SQLException("Не удалось найти работника с ID: " + driverId);
-            }
-        }
-    }
-
-
-    // Обновить данные работника
-    public static void editWorker(int workerId, String fullName, int profession, String phoneNumber) throws SQLException {
-        // SQL-запрос для обновления данных водителя
-        String sql = "UPDATE drivers SET full_name = ?, profession = ?, phone_number = ? WHERE worker_id = ?";
-
-        // Использование PreparedStatement для безопасного выполнения SQL-запроса
-        try (Connection conn = DataBaseHandler.connect();
-             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-
-            preparedStatement.setString(1, fullName);
-            preparedStatement.setInt(2, profession);
-            preparedStatement.setString(3, phoneNumber);
-            preparedStatement.setInt(4, workerId);
-
-            int rowsUpdated = preparedStatement.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Данные работника успешно обновлены.");
             } else {
                 throw new SQLException("Не удалось найти работника с ID: " + workerId);
             }
@@ -88,8 +64,32 @@ public class WorkerDAO {
     }
 
 
+    // Обновить данные работника
+    public static void editWorker(Worker worker) throws SQLException {
+        // SQL-запрос для обновления данных работника
+        String sql = "UPDATE drivers SET full_name = ?, profession = ?, phone_number = ? WHERE worker_id = ?";
+
+        // Использование PreparedStatement для безопасного выполнения SQL-запроса
+        try (Connection conn = DataBaseHandler.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, worker.getFullName());
+            preparedStatement.setInt(2, worker.getProfession());
+            preparedStatement.setString(3, worker.getPhoneNumber());
+            preparedStatement.setInt(4, worker.getId());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Данные работника успешно обновлены.");
+            } else {
+                throw new SQLException("Не удалось найти работника с ID: " + worker.getId());
+            }
+        }
+    }
+
+
     /* Обновить статус работника */
-    public static void updateDriverStatus(int workerId, boolean isAvailable) throws SQLException {
+    public static void updateWorkerStatus(int workerId, boolean isAvailable) throws SQLException {
         // SQL-запрос для обновления статуса водителя
         String sql = "UPDATE workers SET is_available = ? WHERE worker_id = ?";
 
@@ -111,7 +111,7 @@ public class WorkerDAO {
 
 
     public static Worker getWorkerById(int id) {
-        String sql = "SELECT * FROM drivers WHERE driver_id = ?";
+        String sql = "SELECT * FROM workers WHERE worker_id = ?";
         Worker worker = null;
 
         try (Connection conn = DataBaseHandler.connect();
