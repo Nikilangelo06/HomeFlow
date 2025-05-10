@@ -38,7 +38,6 @@ public class OperatorMainController {
             DialogAddWorkerController controller = loader.getController();
             controller.setDialogStage(dialogStage);
 
-            // Ждём пока пользователь введет данные и нажмем на кнопку -Сохранить-
             dialogStage.showAndWait();
 
         } catch (IOException e) {
