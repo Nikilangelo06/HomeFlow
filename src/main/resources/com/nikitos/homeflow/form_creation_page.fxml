@@ -116,6 +116,7 @@
             textAlignment="CENTER" alignment="CENTER"
             text="Отправить заявку"
             maxWidth="250" maxHeight="100"
+            fx:id="addForm_Button"
             styleClass="button-create-request"
             onAction="#handleSendRequest"/>
 

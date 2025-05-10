@@ -15,7 +15,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <GridPane alignment="CENTER" vgap="20" hgap="20" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="com.nikitos.homeflow.Controller.AddControllers.DialogAddWorkerController">
+          fx:controller="com.nikitos.homeflow.Controller.AddControllers.DialogAddWorkerController" minWidth="500">
     <stylesheets>
         <URL value="@Styles/dialog_add_worker_style.css"/>
     </stylesheets>
@@ -68,13 +68,13 @@
 
         <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
                GridPane.valignment="CENTER" GridPane.halignment="LEFT"
-               text="Телефон"
+               text="Профессия"
                maxWidth="Infinity" maxHeight="Infinity"
                styleClass="label-form-add-worker"/>
 
         <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
                GridPane.valignment="CENTER" GridPane.halignment="LEFT"
-               text="Профессия"
+               text="Телефон"
                maxWidth="Infinity" maxHeight="Infinity"
                styleClass="label-form-add-worker"/>
 
