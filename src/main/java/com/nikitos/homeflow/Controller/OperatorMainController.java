@@ -30,7 +30,8 @@ import java.util.Optional;
 import static com.nikitos.homeflow.Util.AlertHelper.showAlert;
 
 public class OperatorMainController {
-
+    @FXML
+    private Tab forms_Tab;
     @FXML
     private VBox forms_VBox;
 
@@ -63,13 +64,8 @@ public class OperatorMainController {
     }
 
 
-    private void loadFormsNotProcessed() {
+    private void loadSelectedForms(ObservableList<Form> forms) {
         try {
-            ObservableList<Form> forms = FormDAO.getAllForms();
-
-            // Фильтруем только доступные заявки
-            FilteredList<Form> availableForms = forms.filtered(form -> !form.isProcessed());
-
             Map<Integer, GridPane> formMap = new HashMap<>();
 
             // Очищаем VBox, в котором лежат GridPane-ы с записями
@@ -126,24 +122,30 @@ public class OperatorMainController {
 
                 TextArea address_TextArea = new TextArea(form.getAddress());
                 address_TextArea.setEditable(false);
-                //address_TextArea.getStyleClass().add("grid-label");
+                address_TextArea.getStyleClass().add("text-area-operator-main");
+                address_TextArea.setWrapText(true);
 
                 TextArea fullName_TextArea = new TextArea(form.getFullName());
                 fullName_TextArea.setEditable(false);
-                //fullName_TextArea.getStyleClass().add("grid-label");
+                fullName_TextArea.getStyleClass().add("text-area-operator-main");
+                fullName_TextArea.setWrapText(true);
 
                 TextArea telephone_TextArea = new TextArea(form.getPhoneNumber());
                 telephone_TextArea.setEditable(false);
-                //telephone_TextArea.getStyleClass().add("grid-label");
+                telephone_TextArea.getStyleClass().add("text-area-operator-main");
+                telephone_TextArea.wrapTextProperty().set(true);
 
                 TextArea whoIsNeeded_TextArea = new TextArea(DataParser.parseWhoIsNeeded(form.getWhoIsNeeded()));;
                 whoIsNeeded_TextArea.setEditable(false);
-                //whoIsNeeded_TextArea.getStyleClass().add("grid-label");
+                whoIsNeeded_TextArea.getStyleClass().add("text-area-operator-main");
+                whoIsNeeded_TextArea.wrapTextProperty().set(true);
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Формат: день-месяц-год
                 String formattedDate = form.getDateCreated().format(formatter); // Преобразуем в строку
                 TextArea dateCreated_TextArea = new TextArea(formattedDate);;
                 dateCreated_TextArea.setEditable(false);
+                dateCreated_TextArea.getStyleClass().add("text-area-operator-main");
+                dateCreated_TextArea.wrapTextProperty().set(true);
 
                 Button deleteForm_Button = new Button("X");
                 deleteForm_Button.getStyleClass().add("button-delete-form");
@@ -157,23 +159,24 @@ public class OperatorMainController {
                         return;
                     }
 
-
                     int formId = form.getId();
                     try {
                         // Удаляем заявку из БД
                         FormDAO.deleteForm(formId);
+
+                        forms_VBox.getChildren().remove(formMap.get(formId)); // Удаляем GridPane
+                        formMap.remove(formId); // Удаляем из Map
+
+                        // Перезагружаем страницу с заявками
+                        Event.fireEvent(forms_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
 
                         showAlert("Заявка успешно удалена!");
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
 
-                    forms_VBox.getChildren().remove(formMap.get(formId)); // Удаляем GridPane
-                    formMap.remove(formId); // Удаляем из Map
-
-                    // Перезагружаем страницу с заявками
-                    loadFormsNotProcessed();
                 });
+
 
                 Button completeForm_Button = new Button("→");
                 completeForm_Button.getStyleClass().add("button-complete-brigade");
@@ -214,9 +217,11 @@ public class OperatorMainController {
 
     @FXML
     private void handleTabFormsSelected(Event event) throws SQLException {
-        loadFormsNotProcessed();
+        ObservableList<Form> allForms = FormDAO.getAllForms();
 
+        // Фильтруем только доступные заявки
+        FilteredList<Form> availableForms = allForms.filtered(form -> !form.isProcessed());
 
-
+        loadSelectedForms(availableForms);
     }
 }

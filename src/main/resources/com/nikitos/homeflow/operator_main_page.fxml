@@ -19,7 +19,7 @@
 
 
     <!-- Вкладка -ЗАЯВКИ- -->
-    <Tab text="Заявки" closable="false" onSelectionChanged="#handleTabFormsSelected">
+    <Tab text="Заявки" closable="false" onSelectionChanged="#handleTabFormsSelected" fx:id="forms_Tab">
         <VBox>
             <Button textAlignment="CENTER"
                     text="←"
