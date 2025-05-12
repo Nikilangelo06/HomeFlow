@@ -13,9 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,6 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.nikitos.homeflow.Util.AlertHelper.showAlert;
 
@@ -149,12 +148,20 @@ public class OperatorMainController {
                 Button deleteForm_Button = new Button("X");
                 deleteForm_Button.getStyleClass().add("button-delete-form");
                 deleteForm_Button.setOnAction(actionEvent -> {
+                    // Подтверждение удаления
+                    Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmation.setTitle("Подтверждение");
+                    confirmation.setHeaderText("Вы уверены, что хотите удалить эту заявку?");
+                    Optional<ButtonType> result = confirmation.showAndWait();
+                    if (result.isEmpty() || result.get() != ButtonType.OK) {
+                        return;
+                    }
+
+
                     int formId = form.getId();
                     try {
                         // Удаляем заявку из БД
                         FormDAO.deleteForm(formId);
-                        // Перезагружаем страницу с заявками
-                        loadFormsNotProcessed();
 
                         showAlert("Заявка успешно удалена!");
                     } catch (SQLException e) {
@@ -163,6 +170,9 @@ public class OperatorMainController {
 
                     forms_VBox.getChildren().remove(formMap.get(formId)); // Удаляем GridPane
                     formMap.remove(formId); // Удаляем из Map
+
+                    // Перезагружаем страницу с заявками
+                    loadFormsNotProcessed();
                 });
 
                 Button completeForm_Button = new Button("→");

@@ -55,7 +55,7 @@
 /***************   Кнопка -УДАЛИТЬ ЗАЯВКУ-   ***************/
 .button-delete-form {
     -fx-text-fill: white;   /* Цвет текста*/
-    -fx-font-size: 16px;    /* Размер шрифта */
+    -fx-font-size: 30px;    /* Размер шрифта */
     -fx-font-weight: bold;  /* Жирность текста */
     -fx-background-radius: 10px;    /* Радиус углов для закругления */
     -fx-background-insets: 10 10 10 10;
