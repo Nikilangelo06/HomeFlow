@@ -1,20 +1,13 @@
 package com.nikitos.homeflow.Controller;
 
-import com.nikitos.homeflow.MainApp;
 import com.nikitos.homeflow.Model.Form;
 import com.nikitos.homeflow.Model.FormDAO;
-import com.nikitos.homeflow.Util.AlertHelper;
 import com.nikitos.homeflow.Util.PageHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
@@ -58,14 +51,10 @@ public class FormCreationController {
                 telephone_TextField.getText(),
                 who_is_needed);
 
-        System.out.println(form.getAddress());
-        System.out.println(form.getFullName());
-        System.out.println(form.getPhoneNumber());
-        System.out.println(form.getWhoIsNeeded());
 
         FormDAO.addForm(form);
 
-        //addForm_Button.setDisable(true);
+        addForm_Button.setDisable(true);
 
         showAlert("Ваша заявка принята, ожидайте звонка от мастера.");
     }

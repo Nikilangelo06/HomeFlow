@@ -19,7 +19,7 @@
 
 
     <!-- Вкладка -ЗАЯВКИ- -->
-    <Tab text="Заявки" closable="false">
+    <Tab text="Заявки" closable="false" onSelectionChanged="#handleTabFormsSelected">
         <VBox>
             <Button textAlignment="CENTER"
                     text="←"
@@ -53,7 +53,7 @@
                 <Label GridPane.columnIndex="1"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
-                       text="ФИО"
+                       text="Клиент"
                        maxWidth="Infinity" maxHeight="Infinity"
                        styleClass="label-header-operator-main"/>
 
@@ -82,7 +82,7 @@
 
 
             <!-- Список необработанных заявок -->
-            <VBox>
+            <VBox fx:id="forms_VBox">
                 <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
@@ -139,7 +139,6 @@
                             text="→" wrapText="true"
                             maxWidth="Infinity" maxHeight="Infinity"
                             styleClass="button-complete-brigade"/>
-
                 </GridPane>
             </VBox>
         </VBox>

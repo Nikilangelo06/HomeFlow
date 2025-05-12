@@ -1,39 +1,25 @@
 package com.nikitos.homeflow.Model;
 
+import java.time.LocalDateTime;
+
 public class Form {
     private int id;
     private String address;
     private String fullName;
     private String phoneNumber;
     private String who_is_needed;
+    private LocalDateTime dateCreated;
     private boolean isProcessed;
 
 
-    public Form(int id, String address, String fullName, String phoneNumber, String who_is_needed, boolean isProcessed) {
+    public Form(int id, String address, String fullName, String phoneNumber, String who_is_needed, LocalDateTime dateCreated, boolean isProcessed) {
         this.id = id;
         this.address = address;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.who_is_needed = who_is_needed;
         this.isProcessed = isProcessed;
-    }
-
-
-    public Form(int id, String address, String fullName, String phoneNumber, String who_is_needed) {
-        this.id = id;
-        this.address = address;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.who_is_needed = who_is_needed;
-    }
-
-
-    public Form(String address, String fullName, String phoneNumber, String who_is_needed, boolean isProcessed) {
-        this.address = address;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.who_is_needed = who_is_needed;
-        this.isProcessed = isProcessed;
+        this.dateCreated = dateCreated;
     }
 
 
@@ -42,6 +28,7 @@ public class Form {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.who_is_needed = who_is_needed;
+        this.dateCreated = LocalDateTime.now();
     }
 
 
@@ -78,6 +65,13 @@ public class Form {
     }
     public void setWhoIsNeeded(String who_is_needed) {
         this.who_is_needed = who_is_needed;
+    }
+
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public boolean isProcessed() {
