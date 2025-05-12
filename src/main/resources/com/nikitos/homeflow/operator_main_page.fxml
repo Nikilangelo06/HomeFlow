@@ -82,65 +82,67 @@
 
 
             <!-- Список необработанных заявок -->
-            <VBox fx:id="forms_VBox">
-                <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="75" vgrow="SOMETIMES"/>
-                    </rowConstraints>
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+                <VBox fx:id="forms_VBox">
+                    <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="19"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="75" vgrow="SOMETIMES"/>
+                        </rowConstraints>
 
 
-                    <TextArea GridPane.columnIndex="0"
-                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                              text="тут адрес" wrapText="true"
-                              maxWidth="Infinity" maxHeight="Infinity"
-                              styleClass="text-area-operator-main" editable="false"/>
+                        <TextArea GridPane.columnIndex="0"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="тут адрес" wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextArea GridPane.columnIndex="1"
-                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                              text="Павловский Никита Сергеевич" wrapText="true"
-                              maxWidth="Infinity" maxHeight="Infinity"
-                              styleClass="text-area-operator-main" editable="false"/>
+                        <TextArea GridPane.columnIndex="1"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="Павловский Никита Сергеевич" wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextArea GridPane.columnIndex="2"
-                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                              text="+375-29-578-47-23" wrapText="true"
-                              maxWidth="Infinity" maxHeight="Infinity"
-                              styleClass="text-area-operator-main" editable="false"/>
+                        <TextArea GridPane.columnIndex="2"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="+375-29-578-47-23" wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false"/>
 
-                    <TextArea GridPane.columnIndex="3"
-                               GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                               text="электрик, сантехник, газовщик" wrapText="true"
-                               maxWidth="Infinity" maxHeight="Infinity"
-                               styleClass="text-area-operator-main" editable="false" />
+                        <TextArea GridPane.columnIndex="3"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="электрик, сантехник, газовщик" wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false" />
 
-                    <TextArea GridPane.columnIndex="4"
-                              GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                              text="Тут дата " wrapText="true"
-                              maxWidth="Infinity" maxHeight="Infinity"
-                              styleClass="text-area-operator-main" editable="false"/>
+                        <TextArea GridPane.columnIndex="4"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="Тут дата " wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false"/>
 
-                    <Button GridPane.columnIndex="5"
-                            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                            text="X" wrapText="true"
-                            maxWidth="Infinity" maxHeight="Infinity"
-                            styleClass="button-delete-form"/>
+                        <Button GridPane.columnIndex="5"
+                                GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                text="X" wrapText="true"
+                                maxWidth="Infinity" maxHeight="Infinity"
+                                styleClass="button-delete-form"/>
 
-                    <Button GridPane.columnIndex="6"
-                            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                            text="→" wrapText="true"
-                            maxWidth="Infinity" maxHeight="Infinity"
-                            styleClass="button-complete-brigade"/>
-                </GridPane>
-            </VBox>
+                        <Button GridPane.columnIndex="6"
+                                GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                text="→" wrapText="true"
+                                maxWidth="Infinity" maxHeight="Infinity"
+                                styleClass="button-complete-brigade"/>
+                    </GridPane>
+                </VBox>
+            </ScrollPane>
         </VBox>
 
     </Tab>
@@ -148,7 +150,7 @@
 
 
     <!-- Вкладка -РАБОЧИЕ- -->
-    <Tab text="Рабочие" closable="false">
+    <Tab text="Рабочие" closable="false" onSelectionChanged="#handleWorkersTabSelected" fx:id="workers_Tab">
         <VBox>
             <Button textAlignment="CENTER"
                     text="←"
@@ -195,9 +197,9 @@
             </GridPane>
 
 
-            <!-- Список необработанных заявок -->
+            <!-- Список всех работников -->
             <ScrollPane fitToHeight="true" fitToWidth="true">
-                <VBox>
+                <VBox fx:id="workers_VBox">
                     <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
                         <columnConstraints>
                             <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>

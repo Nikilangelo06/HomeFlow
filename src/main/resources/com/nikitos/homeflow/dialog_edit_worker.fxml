@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 <?import java.net.URL?>
-
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -12,8 +11,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+
 <GridPane alignment="CENTER" vgap="20" hgap="20" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="com.nikitos.homeflow.Controller.AddControllers.DialogAddWorkerController" minWidth="500">
+          fx:controller="com.nikitos.homeflow.Controller.EditControllers.DialogEditWorkerController" minWidth="500">
     <stylesheets>
         <URL value="@Styles/dialog_add_worker_style.css"/>
     </stylesheets>
@@ -41,7 +41,7 @@
     <Label GridPane.rowIndex="1"
            GridPane.valignment="CENTER" GridPane.halignment="CENTER"
            textAlignment="CENTER" alignment="CENTER"
-           text="Добавление работника"
+           text="Редактирование работника"
            maxWidth="Infinity" maxHeight="Infinity"
            styleClass="label-header-form-add-worker"/>
 
@@ -83,13 +83,13 @@
                    GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                    promptText="Введите ФИО" maxHeight="Infinity" maxWidth="Infinity"
                    styleClass="text-field-creation-form"
-                   fx:id="fullName_TextField"/>
+                   fx:id="fullNameEdited_TextField"/>
 
         <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="1"
                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                   promptText="Выберите профессию"
                   maxHeight="Infinity" maxWidth="Infinity"
-                  styleClass="combobox-form-add-worker" fx:id="profession_ComboBox">
+                  styleClass="combobox-form-add-worker" fx:id="professionEdited_ComboBox">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Газовщик"/>
@@ -104,7 +104,7 @@
                    GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                    promptText="Введите телефон" maxHeight="Infinity" maxWidth="Infinity"
                    styleClass="text-field-creation-form"
-                   fx:id="telephone_TextField"/>
+                   fx:id="telephoneEdited_TextField"/>
 
     </GridPane>
 
@@ -115,6 +115,6 @@
             text="Сохранить"
             maxWidth="250" maxHeight="100"
             styleClass="button-add-worker-form-add-worker"
-            onAction="#handleClickSaveButton"/>
+            onAction="#handleClickSaveEditedWorker"/>
 
 </GridPane>

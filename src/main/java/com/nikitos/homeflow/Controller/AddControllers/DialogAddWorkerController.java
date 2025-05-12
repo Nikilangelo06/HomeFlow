@@ -41,7 +41,7 @@ public class DialogAddWorkerController {
             Worker newWorker = new Worker("", 0, "");
             newWorker.setFullName(fullName_TextField.getText());
             newWorker.setPhoneNumber(telephone_TextField.getText());
-            newWorker.setProfession(profession_ComboBox.getVisibleRowCount());
+            newWorker.setProfession(profession_ComboBox.getSelectionModel().getSelectedIndex());
 
             WorkerDAO.addWorker(newWorker);
             showAlert("Работник успешно добавлен!");
@@ -63,7 +63,7 @@ public class DialogAddWorkerController {
 
 
     @FXML
-    protected void handleClickBackButton(ActionEvent event) {
+    private void handleClickBackButton(ActionEvent event) {
         // Возвращаемся на страницу оператора
         PageHelper.goToPage("operator_main_page.fxml", event);
     }

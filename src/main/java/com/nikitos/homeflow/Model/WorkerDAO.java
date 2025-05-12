@@ -67,7 +67,7 @@ public class WorkerDAO {
     // Обновить данные работника
     public static void editWorker(Worker worker) throws SQLException {
         // SQL-запрос для обновления данных работника
-        String sql = "UPDATE drivers SET full_name = ?, profession = ?, phone_number = ? WHERE worker_id = ?";
+        String sql = "UPDATE workers SET full_name = ?, profession = ?, phone_number = ? WHERE worker_id = ?";
 
         // Использование PreparedStatement для безопасного выполнения SQL-запроса
         try (Connection conn = DataBaseHandler.connect();

@@ -1,8 +1,11 @@
 package com.nikitos.homeflow.Controller;
 
 import com.nikitos.homeflow.Controller.AddControllers.DialogAddWorkerController;
+import com.nikitos.homeflow.Controller.EditControllers.DialogEditWorkerController;
 import com.nikitos.homeflow.Model.Form;
 import com.nikitos.homeflow.Model.FormDAO;
+import com.nikitos.homeflow.Model.Worker;
+import com.nikitos.homeflow.Model.WorkerDAO;
 import com.nikitos.homeflow.Util.DataParser;
 import com.nikitos.homeflow.Util.PageHelper;
 import javafx.collections.ObservableList;
@@ -23,7 +26,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,9 +33,14 @@ import static com.nikitos.homeflow.Util.AlertHelper.showAlert;
 
 public class OperatorMainController {
     @FXML
+    private Tab workers_Tab;
+    @FXML
+    private VBox workers_VBox;
+    @FXML
     private Tab forms_Tab;
     @FXML
     private VBox forms_VBox;
+
 
     @FXML
     protected void handleClickBackButton(ActionEvent event) {
@@ -58,13 +65,16 @@ public class OperatorMainController {
 
             dialogStage.showAndWait();
 
+            // Перезагружаем страницу с заявками
+            Event.fireEvent(workers_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             showAlert("Не удалось загрузить окно: " + e.getMessage());
         }
     }
 
 
-    private void loadSelectedForms(ObservableList<Form> forms) {
+    private void loadForms(ObservableList<Form> forms) {
         try {
             Map<Integer, GridPane> formMap = new HashMap<>();
 
@@ -222,6 +232,155 @@ public class OperatorMainController {
         // Фильтруем только доступные заявки
         FilteredList<Form> availableForms = allForms.filtered(form -> !form.isProcessed());
 
-        loadSelectedForms(availableForms);
+        loadForms(availableForms);
+    }
+
+
+    private static int selectedWorkerId;
+    public static int getSelectedWorkerId() { return selectedWorkerId;}
+
+    private void loadWorkers(ObservableList<Worker> workers) {
+        try {
+            Map<Integer, GridPane> workerMap = new HashMap<>();
+
+            // Очищаем VBox, в котором лежат GridPane-ы с записями
+            workers_VBox.getChildren().clear();
+
+            int rowIndex = 0;
+            for (Worker worker : workers) {
+                GridPane gridPane = new GridPane();
+                gridPane.setGridLinesVisible(true);
+
+                // Для Связи Id Form и GridPane (для последующей обработки кнопки cancel)
+                workerMap.put(worker.getId(), gridPane);
+
+                // Настройка RowConstraints
+                RowConstraints dataRow = new RowConstraints();
+                dataRow.setPercentHeight(100);
+                dataRow.setMaxHeight(75);
+                gridPane.getRowConstraints().add(dataRow);
+
+                // Настройка ColumnConstraints
+                ColumnConstraints col1 = new ColumnConstraints();
+                col1.setPercentWidth(30);
+                col1.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col2 = new ColumnConstraints();
+                col2.setPercentWidth(30);
+                col2.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col3 = new ColumnConstraints();
+                col3.setPercentWidth(30);
+                col3.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col4 = new ColumnConstraints();
+                col4.setPercentWidth(5);
+                col4.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col5 = new ColumnConstraints();
+                col5.setPercentWidth(5);
+                col5.setHgrow(Priority.ALWAYS);
+                col5.setHalignment(HPos.CENTER);
+
+                gridPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
+
+
+                TextArea fullName_TextArea = new TextArea(worker.getFullName());
+                fullName_TextArea.setEditable(false);
+                fullName_TextArea.getStyleClass().add("text-area-operator-main");
+                fullName_TextArea.setWrapText(true);
+
+                TextArea profession_TextArea = new TextArea(DataParser.parseWhoIsNeeded(String.valueOf(worker.getProfession())));
+                profession_TextArea.setEditable(false);
+                profession_TextArea.getStyleClass().add("text-area-operator-main");
+                profession_TextArea.setWrapText(true);
+
+                TextArea telephone_TextArea = new TextArea(worker.getPhoneNumber());
+                telephone_TextArea.setEditable(false);
+                telephone_TextArea.getStyleClass().add("text-area-operator-main");
+                telephone_TextArea.wrapTextProperty().set(true);
+
+                Button editWorker_Button = new Button("→");
+                editWorker_Button.getStyleClass().add("button-edit-worker");
+                editWorker_Button.setOnAction(event -> {
+                    selectedWorkerId = worker.getId();
+
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nikitos/homeflow/dialog_edit_worker.fxml"));
+                        GridPane page = loader.load();
+
+                        Stage dialogStage = new Stage();
+                        dialogStage.setTitle("Редактирование работника");
+                        dialogStage.initModality(Modality.WINDOW_MODAL);
+                        dialogStage.initOwner(MainApp.getPrimaryStage());
+                        Scene scene = new Scene(page);
+                        dialogStage.setScene(scene);
+
+                        DialogEditWorkerController controller = loader.getController();
+                        controller.setDialogStage(dialogStage);
+                        controller.setSelectedWorker(worker);
+
+                        dialogStage.showAndWait();
+
+                        // Перезагружаем страницу с заявками
+                        Event.fireEvent(workers_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+                Button deleteWorker_Button = new Button("X");
+                deleteWorker_Button.getStyleClass().add("button-delete-worker");
+                deleteWorker_Button.setOnAction(actionEvent -> {
+                    // Подтверждение удаления
+                    Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmation.setTitle("Подтверждение");
+                    confirmation.setHeaderText("Вы уверены, что хотите удалить этого работника?");
+                    Optional<ButtonType> result = confirmation.showAndWait();
+                    if (result.isEmpty() || result.get() != ButtonType.OK) {
+                        return;
+                    }
+
+                    selectedWorkerId = worker.getId();
+
+                    try {
+                        // Удаляем заявку из БД
+                        WorkerDAO.deleteWorker(selectedWorkerId);
+
+                        workers_VBox.getChildren().remove(workerMap.get(selectedWorkerId)); // Удаляем GridPane
+                        workerMap.remove(selectedWorkerId); // Удаляем из Map
+
+                        // Перезагружаем страницу с заявками
+                        Event.fireEvent(workers_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
+
+                        showAlert("Работник успешно удален!");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                });
+
+
+                gridPane.add(fullName_TextArea, 0, rowIndex);
+                gridPane.add(profession_TextArea, 1, rowIndex);
+                gridPane.add(telephone_TextArea, 2, rowIndex);
+                gridPane.add(editWorker_Button, 3, rowIndex);
+                gridPane.add(deleteWorker_Button, 4, rowIndex);
+
+
+                workers_VBox.getChildren().add(gridPane);
+            }
+
+        } catch (Exception e) {
+            showAlert("Не удалось загрузить работников: " + e.getMessage());
+        }
+    }
+
+
+    @FXML
+    private void handleWorkersTabSelected(Event event) throws SQLException {
+        ObservableList<Worker> allWorkers = WorkerDAO.getAllWorkers();
+        loadWorkers(allWorkers);
     }
 }

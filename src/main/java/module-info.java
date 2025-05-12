@@ -16,4 +16,6 @@ module com.nikitos.homeflow {
     opens com.nikitos.homeflow.Controller to javafx.fxml;
     exports com.nikitos.homeflow.Controller.AddControllers;
     opens com.nikitos.homeflow.Controller.AddControllers to javafx.fxml;
+    exports com.nikitos.homeflow.Controller.EditControllers;
+    opens com.nikitos.homeflow.Controller.EditControllers to javafx.fxml;
 }
