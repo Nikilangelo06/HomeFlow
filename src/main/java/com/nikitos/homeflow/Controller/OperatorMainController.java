@@ -446,10 +446,10 @@ public class OperatorMainController {
                 gridPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
 
 
-                TextArea fullName_TextArea = new TextArea(form.getFullName());
-                fullName_TextArea.setEditable(false);
-                fullName_TextArea.getStyleClass().add("text-area-operator-main");
-                fullName_TextArea.setWrapText(true);
+                TextArea whoIsNeeded_TextArea = new TextArea(DataParser.parseWhoIsNeededString(form.getWhoIsNeeded()));;
+                whoIsNeeded_TextArea.setEditable(false);
+                whoIsNeeded_TextArea.getStyleClass().add("text-area-operator-main");
+                whoIsNeeded_TextArea.wrapTextProperty().set(true);
 
                 TextArea telephone_TextArea = new TextArea(form.getPhoneNumber());
                 telephone_TextArea.setEditable(false);
@@ -468,15 +468,19 @@ public class OperatorMainController {
 
                 ComboBox workers0_ComboBox = new ComboBox(getWorkersNames(workers_0));
                 workers0_ComboBox.promptTextProperty().set("Выберите газовщика");
+                workers0_ComboBox.setMinWidth(450);
 
                 ComboBox workers1_ComboBox = new ComboBox(getWorkersNames(workers_1));
                 workers1_ComboBox.promptTextProperty().set("Выберите сантехника");
+                workers1_ComboBox.setMinWidth(450);
 
                 ComboBox workers2_ComboBox = new ComboBox(getWorkersNames(workers_2));
                 workers2_ComboBox.promptTextProperty().set("Выберите слесаря");
+                workers2_ComboBox.setMinWidth(450);
 
                 ComboBox workers3_ComboBox = new ComboBox(getWorkersNames(workers_3));
                 workers3_ComboBox.promptTextProperty().set("Выберите электрика");
+                workers3_ComboBox.setMinWidth(450);
 
                 workers_VBox.getChildren().addAll(workers0_ComboBox, workers1_ComboBox, workers2_ComboBox, workers3_ComboBox);
 
@@ -496,15 +500,19 @@ public class OperatorMainController {
                     int formId = form.getId();
                     // Ставим новый статус заявки
                     form.setProcessed(false);
+                    try {
+                        FormDAO.updateFormStatus(formId, false);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    forms_VBox.getChildren().remove(formMap.get(formId)); // Удаляем GridPane
+                    processingForms_VBox.getChildren().remove(formMap.get(formId)); // Удаляем GridPane
                     formMap.remove(formId); // Удаляем из Map
 
                     // Перезагружаем страницу с заявками
                     Event.fireEvent(forms_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
 
                     showAlert("Заявка успешно удалена!");
-
                 });
 
 
@@ -523,12 +531,11 @@ public class OperatorMainController {
                 });
 
 
-                gridPane.add(fullName_TextArea, 0, rowIndex);
-                gridPane.add(telephone_TextArea, 1, rowIndex);
+                gridPane.add(telephone_TextArea, 0, rowIndex);
+                gridPane.add(whoIsNeeded_TextArea, 1, rowIndex);
                 gridPane.add(workers_VBox, 2, rowIndex);
                 gridPane.add(deleteForm_Button, 3, rowIndex);
                 gridPane.add(completeForm_Button, 4, rowIndex);
-
 
                 processingForms_VBox.getChildren().add(gridPane);
             }
@@ -541,7 +548,8 @@ public class OperatorMainController {
 
     private ObservableList<Worker> getNeededWorkers(Form form) throws SQLException {
         ArrayList<Integer> workersNeededIntArray = DataParser.parseWhoIsNeededIntArray(form.getWhoIsNeeded());
-        ObservableList<Worker> workers = WorkerDAO.getAllWorkers();
+        // Выбираем только из тех работников, которые не заняты
+        ObservableList<Worker> workers = WorkerDAO.getAllWorkers().filtered(Worker::IsAvailable);
 
         // Распределяем всех работников по профессии
         FilteredList<Worker> workers_0 = workers.filtered(worker -> { return worker.getProfession() == 0; });
@@ -551,8 +559,6 @@ public class OperatorMainController {
 
         ObservableList<Worker> workersNeeded = FXCollections.observableArrayList();;
         for (Integer integer : workersNeededIntArray) {
-            System.out.println(workersNeededIntArray);
-
             switch (integer) {
                 case 0:
                     workersNeeded.addAll(workers_0);

@@ -286,18 +286,17 @@
                     <RowConstraints maxHeight="50" prefHeight="50"/>
                 </rowConstraints>
 
-
                 <Label GridPane.columnIndex="0"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
-                       text="ФИО клиента"
+                       text="Номер телефона клиента"
                        maxWidth="Infinity" maxHeight="Infinity"
                        styleClass="label-header-operator-main"/>
 
                 <Label GridPane.columnIndex="1"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
-                       text="Номер телефона клиента"
+                       text="Кто нужен клиенту?"
                        maxWidth="Infinity" maxHeight="Infinity"
                        styleClass="label-header-operator-main"/>
 
@@ -307,7 +306,6 @@
                        text="Выбор мастера"
                        maxWidth="Infinity" maxHeight="Infinity"
                        styleClass="label-header-operator-main"/>
-
 
             </GridPane>
 
@@ -324,19 +322,19 @@
                             <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints maxHeight="75" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="200" vgrow="SOMETIMES"/>
                         </rowConstraints>
 
 
                         <TextArea GridPane.columnIndex="0"
                                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                                  text="Клиент 1" wrapText="true"
+                                  text="Телефон клиента" wrapText="true"
                                   maxWidth="Infinity" maxHeight="Infinity"
                                   styleClass="text-area-operator-main" editable="false"/>
 
                         <TextArea GridPane.columnIndex="1"
                                   GridPane.valignment="CENTER" GridPane.halignment="CENTER"
-                                  text="+375-29-123-45-67" wrapText="true"
+                                  text="кто нужен клиенту" wrapText="true"
                                   maxWidth="Infinity" maxHeight="Infinity"
                                   styleClass="text-area-operator-main" editable="false"/>
 
@@ -344,7 +342,7 @@
                               GridPane.valignment="CENTER" GridPane.halignment="CENTER">
                             <ComboBox promptText="Выберите мастера-газовщика"
                                       maxHeight="Infinity" maxWidth="Infinity"
-                                      styleClass="combobox-form-add-worker" fx:id="master0Choose_ComboBox">
+                                      styleClass="combobox-form-add-worker" >
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
                                         <String fx:value="Мастер 1"/>
@@ -355,7 +353,7 @@
 
                             <ComboBox promptText="Выберите мастера-сантехника"
                                       maxHeight="Infinity" maxWidth="Infinity"
-                                      styleClass="combobox-form-add-worker" fx:id="master1Choose_ComboBox">
+                                      styleClass="combobox-form-add-worker">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
                                         <String fx:value="Мастер 1"/>
@@ -366,7 +364,7 @@
 
                             <ComboBox promptText="Выберите мастера-слесаря"
                                       maxHeight="Infinity" maxWidth="Infinity"
-                                      styleClass="combobox-form-add-worker" fx:id="master2Choose_ComboBox">
+                                      styleClass="combobox-form-add-worker" >
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
                                         <String fx:value="Мастер 1"/>
@@ -377,7 +375,7 @@
 
                             <ComboBox promptText="Выберите мастера-электрика"
                                       maxHeight="Infinity" maxWidth="Infinity"
-                                      styleClass="combobox-form-add-worker" fx:id="master3Choose_ComboBox">
+                                      styleClass="combobox-form-add-worker" >
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
                                         <String fx:value="Мастер 1"/>
