@@ -1,5 +1,8 @@
 package com.nikitos.homeflow.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +41,8 @@ public class WorkerFormDAO {
     }
 
 
-    public static List<WorkerForm> getAllWorkerForms() throws SQLException {
-        List<WorkerForm> workerForms = new ArrayList<>();
+    public static ObservableList<WorkerForm> getAllWorkerForms() throws SQLException {
+        ObservableList<WorkerForm> workerForms = FXCollections.observableArrayList();
         String sql = "SELECT * FROM worker_form";
 
         try (Connection conn = DataBaseHandler.connect();

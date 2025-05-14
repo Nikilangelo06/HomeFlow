@@ -32,6 +32,8 @@ import static com.nikitos.homeflow.Util.AlertHelper.showAlert;
 
 public class OperatorMainController {
     @FXML
+    private VBox finishedForms_VBox;
+    @FXML
     private TabPane Main_TabPane;
     @FXML
     private VBox processingForms_VBox;
@@ -389,6 +391,7 @@ public class OperatorMainController {
         loadWorkers(allWorkers);
     }
 
+
     @FXML
     private void handleProcessingFormsTabSelected(Event event) throws SQLException {
         ObservableList<Form> allForms = FormDAO.getAllForms();
@@ -580,6 +583,8 @@ public class OperatorMainController {
 
                     processingForms_VBox.getChildren().remove(formMap.get(formId)); // Удаляем GridPane
                     formMap.remove(formId); // Удаляем из Map
+
+                    showAlert("Заявка успешно обработана!");
                 });
 
 
@@ -640,5 +645,180 @@ public class OperatorMainController {
         }
 
         return names;
+    }
+
+    @FXML
+    private void handleHistoryFormsTabSelected(Event event) throws SQLException {
+        // Фильтруем только заявки, которые завершены
+        ObservableList<Form> finishedForms = FormDAO.getAllForms().filtered(Form::isFinished);
+
+        loadFinishedForms(finishedForms);
+    }
+
+    private void loadFinishedForms(ObservableList<Form> forms) {
+        try {
+            Map<Integer, GridPane> formMap = new HashMap<>();
+
+            // Очищаем VBox, в котором лежат GridPane-ы с записями
+            finishedForms_VBox.getChildren().clear();
+
+            int rowIndex = 0;
+            for (Form form : forms) {
+                GridPane gridPane = new GridPane();
+                gridPane.setGridLinesVisible(true);
+
+                // Для Связи Id Form и GridPane (для последующей обработки кнопки cancel)
+                formMap.put(form.getId(), gridPane);
+
+                // Настройка RowConstraints
+                RowConstraints dataRow = new RowConstraints();
+                dataRow.setPercentHeight(100);
+                dataRow.setMaxHeight(175);
+                gridPane.getRowConstraints().add(dataRow);
+
+                // Настройка ColumnConstraints
+                ColumnConstraints col1 = new ColumnConstraints();
+                col1.setPercentWidth(20);
+                col1.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col2 = new ColumnConstraints();
+                col2.setPercentWidth(25);
+                col2.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col3 = new ColumnConstraints();
+                col3.setPercentWidth(25);
+                col3.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col4 = new ColumnConstraints();
+                col4.setPercentWidth(25);
+                col4.setHgrow(Priority.ALWAYS);
+
+                ColumnConstraints col5 = new ColumnConstraints();
+                col5.setPercentWidth(5);
+                col5.setHgrow(Priority.ALWAYS);
+                col5.setHalignment(HPos.CENTER);
+
+
+                gridPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
+
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Формат: день-месяц-год
+                String formattedDate = form.getDateCreated().format(formatter); // Преобразуем в строку
+                TextArea dateCompleted_TextArea = new TextArea(formattedDate);;
+                dateCompleted_TextArea.setEditable(false);
+                dateCompleted_TextArea.getStyleClass().add("text-area-operator-main");
+                dateCompleted_TextArea.wrapTextProperty().set(true);
+
+                TextArea fullNameClient_TextArea = new TextArea(form.getFullName());
+                fullNameClient_TextArea.setEditable(false);
+                fullNameClient_TextArea.getStyleClass().add("text-area-operator-main");
+                fullNameClient_TextArea.setWrapText(true);
+
+                TextArea telephone_TextArea = new TextArea(form.getPhoneNumber());
+                telephone_TextArea.setEditable(false);
+                telephone_TextArea.getStyleClass().add("text-area-operator-main");
+                telephone_TextArea.setWrapText(true);
+
+                /* Заполнение мастеров */
+                VBox workers_VBox = new VBox();
+
+                // Получаем список workerForms, которые связаны с этой заявкой
+                ObservableList<WorkerForm> workerForms = WorkerFormDAO.getAllWorkerForms().filtered(
+                        workerForm -> workerForm.getFormId() == form.getId()
+                );
+
+                // Формируем список работников, исходя из данных списка workerForms
+                ObservableList<Worker> workers = FXCollections.observableArrayList();
+                for (WorkerForm workerForm : workerForms) {
+                    workers.add(WorkerDAO.getWorkerById(workerForm.getWorker_id()));
+                }
+
+                FilteredList<Worker> workers_0 = workers.filtered(worker -> worker.getProfession() == 0);
+                FilteredList<Worker> workers_1 = workers.filtered(worker -> worker.getProfession() == 1);
+                FilteredList<Worker> workers_2 = workers.filtered(worker -> worker.getProfession() == 2);
+                FilteredList<Worker> workers_3 = workers.filtered(worker -> worker.getProfession() == 3);
+
+                ComboBox workers0_ComboBox = new ComboBox(getWorkersNames(workers_0));
+                workers0_ComboBox.setMinWidth(350);
+
+                ComboBox workers1_ComboBox = new ComboBox(getWorkersNames(workers_1));
+                workers1_ComboBox.setMinWidth(350);
+
+                ComboBox workers2_ComboBox = new ComboBox(getWorkersNames(workers_2));
+                workers2_ComboBox.setMinWidth(350);
+
+                ComboBox workers3_ComboBox = new ComboBox(getWorkersNames(workers_3));
+                workers3_ComboBox.setMinWidth(350);
+
+
+                // Добавляем и предварительно связываем Имена работников с объектами Worker
+                if (!workers_0.isEmpty()) {
+                    workers0_ComboBox.getSelectionModel().select(getWorkersNames(workers_0).get(0));
+                    workers_VBox.getChildren().add(workers0_ComboBox);
+                }
+                if (!workers_1.isEmpty()) {
+                    workers1_ComboBox.getSelectionModel().select(getWorkersNames(workers_1).get(0));
+                    workers_VBox.getChildren().add(workers1_ComboBox);
+                }
+                if (!workers_2.isEmpty()) {
+                    workers2_ComboBox.getSelectionModel().select(getWorkersNames(workers_2).get(0));
+                    workers_VBox.getChildren().add(workers2_ComboBox);
+                }
+                if (!workers_3.isEmpty()) {
+                    workers3_ComboBox.getSelectionModel().select(getWorkersNames(workers_3).get(0));
+                    workers_VBox.getChildren().add(workers3_ComboBox);
+                }
+
+
+                /* Кнопка Завершить работу над заявкой */
+                Button finishForm_Button = new Button("X");
+                finishForm_Button.getStyleClass().add("button-delete-form");
+                finishForm_Button.setOnAction(actionEvent -> {
+                    // Подтверждение удаления
+                    Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmation.setTitle("Подтверждение");
+                    confirmation.setHeaderText("Мастера зварешили работу над этой заявкой?");
+                    Optional<ButtonType> result = confirmation.showAndWait();
+                    if (result.isEmpty() || result.get() != ButtonType.OK) {
+                        return;
+                    }
+
+                    try {
+                        // Удаляем отработанную заявку
+                        FormDAO.deleteForm(form.getId());
+
+                        // Освобождаем работников
+                        for(Worker worker : workers) {
+                            WorkerDAO.updateWorkerStatus(worker.getId(), true);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    finishedForms_VBox.getChildren().remove(formMap.get(form.getId())); // Удаляем GridPane
+                    formMap.remove(form.getId()); // Удаляем из Map
+
+                    // Перезагружаем страницу с заявками
+                    Event.fireEvent(forms_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
+
+                    showAlert("Мастера завершили работу, клиент доволен :). Заявка удалена");
+                });
+
+
+
+
+                gridPane.add(dateCompleted_TextArea, 0, rowIndex);
+                gridPane.add(fullNameClient_TextArea, 1, rowIndex);
+                gridPane.add(telephone_TextArea, 2, rowIndex);
+                gridPane.add(workers_VBox, 3, rowIndex);
+                gridPane.add(finishForm_Button, 4, rowIndex);
+
+                finishedForms_VBox.getChildren().add(gridPane);
+            }
+
+        } catch (Exception e) {
+            showAlert("Не удалось загрузить заявки в процессе разработки: " + e.getMessage());
+            System.out.println(e.getMessage());
+        }
     }
 }
