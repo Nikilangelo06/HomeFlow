@@ -38,7 +38,6 @@ public class DataBaseHandler {
                 worker_form_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 worker_id INTEGER,
                 form_id INTEGER,
-                is_completed BOOLEAN DEFAULT 0,
                 FOREIGN KEY (worker_id) REFERENCES workers(worker_id),
                 FOREIGN KEY (form_id) REFERENCES forms(form_id)
             );

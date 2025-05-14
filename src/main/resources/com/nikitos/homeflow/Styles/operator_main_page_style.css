@@ -165,3 +165,25 @@
     -fx-background-color: darkgreen;
     -fx-background-radius: 5px;
 }
+
+
+/***************   Кнопка -Обработать заявку-   ***************/
+.button-confirm-form {
+    -fx-text-fill: white;   /* Цвет текста*/
+    -fx-font-size: 20px;    /* Размер шрифта */
+    -fx-font-weight: bold;  /* Жирность текста */
+    -fx-background-radius: 10px;    /* Радиус углов для закругления */
+    -fx-background-insets: 10 10 10 10;
+    -fx-background-color: lightgreen;
+}
+
+/* При наведении */
+.button-confirm-form:hover {
+    -fx-background-color: green;
+}
+
+/* Стиль при клике */
+.button-confirm-form:pressed {
+    -fx-background-color: darkgreen;
+    -fx-background-radius: 5px;
+}

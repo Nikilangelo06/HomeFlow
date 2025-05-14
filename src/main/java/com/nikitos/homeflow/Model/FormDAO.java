@@ -92,8 +92,8 @@ public class FormDAO {
 
     /* Обновить статус заявки */
     public static void updateFormStatus(int formId, boolean isProcessed) throws SQLException {
-        // SQL-запрос для обновления статуса водителя
-        String sql = "UPDATE workers SET is_processed = ? WHERE form_id = ?";
+        // SQL-запрос для обновления статуса заявки
+        String sql = "UPDATE forms SET is_processed = ? WHERE form_id = ?";
 
         // Использование PreparedStatement для безопасного выполнения SQL-запроса
         try (Connection conn = DataBaseHandler.connect();

@@ -8,10 +8,12 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.cell.TextFieldTableCell?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <TabPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="com.nikitos.homeflow.Controller.OperatorMainController"
          maxWidth="Infinity" maxHeight="Infinity" minWidth="Infinity" minHeight="Infinity"
-         styleClass="tab-pane-operator-main">
+         styleClass="tab-pane-operator-main" fx:id="Main_TabPane">
     <stylesheets>
         <URL value="@Styles/operator_main_page_style.css"/>
     </stylesheets>
@@ -74,7 +76,7 @@
                 <Label GridPane.columnIndex="4"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        textAlignment="CENTER" alignment="CENTER"
-                       text="Дата"
+                       text="Дата создания"
                        maxWidth="Infinity" maxHeight="Infinity"
                        styleClass="label-header-operator-main"/>
 
@@ -259,6 +261,156 @@
         </VBox>
 
     </Tab>
+
+
+
+    <!-- Вкладка -Обработка заявок- -->
+    <Tab text="Обработка заявок" closable="false" onSelectionChanged="#handleProcessingFormsTabSelected" fx:id="processingForms_Tab">
+        <VBox>
+            <Button textAlignment="CENTER"
+                    text="←"
+                    maxWidth="75" maxHeight="75"
+                    styleClass="button-back-operator-main"
+                    onAction="#handleClickBackButton"/>
+
+            <!-- Заголовочный GridPane -->
+            <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="50" prefHeight="50"/>
+                </rowConstraints>
+
+
+                <Label GridPane.columnIndex="0"
+                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" alignment="CENTER"
+                       text="ФИО клиента"
+                       maxWidth="Infinity" maxHeight="Infinity"
+                       styleClass="label-header-operator-main"/>
+
+                <Label GridPane.columnIndex="1"
+                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" alignment="CENTER"
+                       text="Номер телефона клиента"
+                       maxWidth="Infinity" maxHeight="Infinity"
+                       styleClass="label-header-operator-main"/>
+
+                <Label GridPane.columnIndex="2"
+                       GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                       textAlignment="CENTER" alignment="CENTER"
+                       text="Выбор мастера"
+                       maxWidth="Infinity" maxHeight="Infinity"
+                       styleClass="label-header-operator-main"/>
+
+
+            </GridPane>
+
+
+            <!-- Список всех заявок на обработку -->
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+                <VBox fx:id="processingForms_VBox">
+                    <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="5"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="75" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+
+
+                        <TextArea GridPane.columnIndex="0"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="Клиент 1" wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false"/>
+
+                        <TextArea GridPane.columnIndex="1"
+                                  GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                  text="+375-29-123-45-67" wrapText="true"
+                                  maxWidth="Infinity" maxHeight="Infinity"
+                                  styleClass="text-area-operator-main" editable="false"/>
+
+                        <VBox GridPane.columnIndex="2"
+                              GridPane.valignment="CENTER" GridPane.halignment="CENTER">
+                            <ComboBox promptText="Выберите мастера-газовщика"
+                                      maxHeight="Infinity" maxWidth="Infinity"
+                                      styleClass="combobox-form-add-worker" fx:id="master0Choose_ComboBox">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Мастер 1"/>
+                                        <String fx:value="Мастер 2"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+                            <ComboBox promptText="Выберите мастера-сантехника"
+                                      maxHeight="Infinity" maxWidth="Infinity"
+                                      styleClass="combobox-form-add-worker" fx:id="master1Choose_ComboBox">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Мастер 1"/>
+                                        <String fx:value="Мастер 2"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+                            <ComboBox promptText="Выберите мастера-слесаря"
+                                      maxHeight="Infinity" maxWidth="Infinity"
+                                      styleClass="combobox-form-add-worker" fx:id="master2Choose_ComboBox">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Мастер 1"/>
+                                        <String fx:value="Мастер 2"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+                            <ComboBox promptText="Выберите мастера-электрика"
+                                      maxHeight="Infinity" maxWidth="Infinity"
+                                      styleClass="combobox-form-add-worker" fx:id="master3Choose_ComboBox">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Мастер 1"/>
+                                        <String fx:value="Мастер 2"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                        </VBox>
+
+
+
+                        <Button GridPane.columnIndex="3"
+                                GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                text="→"
+                                maxWidth="Infinity" maxHeight="Infinity"
+                                styleClass="button-confirm-form"/>
+
+                        <Button GridPane.columnIndex="4"
+                                GridPane.valignment="CENTER" GridPane.halignment="CENTER"
+                                text="X"
+                                maxWidth="Infinity" maxHeight="Infinity"
+                                styleClass="button-delete-form"/>
+
+                    </GridPane>
+
+                </VBox>
+            </ScrollPane>
+
+
+        </VBox>
+
+    </Tab>
+
 </TabPane>
 
 
