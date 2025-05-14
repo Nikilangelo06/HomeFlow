@@ -543,7 +543,7 @@ public class OperatorMainController {
                     // Перезагружаем страницу с заявками
                     Event.fireEvent(forms_Tab, new Event(Tab.SELECTION_CHANGED_EVENT));
 
-                    showAlert("Заявка успешно удалена!");
+                    showAlert("Заявка успешно перенесена в необработанные заявки!");
                 });
 
 
