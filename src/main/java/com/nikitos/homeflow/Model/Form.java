@@ -10,9 +10,10 @@ public class Form {
     private String who_is_needed;
     private LocalDateTime dateCreated;
     private boolean isProcessing;
+    private boolean isFinished;
 
 
-    public Form(int id, String address, String fullName, String phoneNumber, String who_is_needed, LocalDateTime dateCreated, boolean isProcessing) {
+    public Form(int id, String address, String fullName, String phoneNumber, String who_is_needed, LocalDateTime dateCreated, boolean isProcessing, boolean isFinished) {
         this.id = id;
         this.address = address;
         this.fullName = fullName;
@@ -20,6 +21,7 @@ public class Form {
         this.who_is_needed = who_is_needed;
         this.isProcessing = isProcessing;
         this.dateCreated = dateCreated;
+        this.isFinished = isFinished;
     }
 
 
@@ -79,5 +81,12 @@ public class Form {
     }
     public void setProcessed(boolean processed) {
         isProcessing = processed;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 }

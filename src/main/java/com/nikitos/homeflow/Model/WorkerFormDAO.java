@@ -23,7 +23,7 @@ public class WorkerFormDAO {
 
 
     public static void addWorkerForm(WorkerForm workerForm) {
-        String sql = "INSERT INTO worker_form (worker_id, form_id,) VALUES (?, ?)";
+        String sql = "INSERT INTO worker_form (worker_id, form_id) VALUES (?, ?)";
 
         try (Connection conn = DataBaseHandler.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

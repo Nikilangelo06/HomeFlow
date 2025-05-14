@@ -39,7 +39,8 @@ public class FormDAO {
                         rs.getString("phone_number"),
                         rs.getString("who_is_needed"),
                         rs.getTimestamp("date_created").toLocalDateTime(), // Преобразование TIMESTAMP -> LocalDateTime
-                        rs.getBoolean("is_processed")
+                        rs.getBoolean("is_processed"),
+                        rs.getBoolean("is_finished")
                 ));
             }
         }
@@ -91,7 +92,7 @@ public class FormDAO {
 
 
     /* Обновить статус заявки */
-    public static void updateFormStatus(int formId, boolean isProcessed) throws SQLException {
+    public static void updateFormStatus(int formId, boolean isProcessing) throws SQLException {
         // SQL-запрос для обновления статуса заявки
         String sql = "UPDATE forms SET is_processed = ? WHERE form_id = ?";
 
@@ -99,7 +100,7 @@ public class FormDAO {
         try (Connection conn = DataBaseHandler.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            preparedStatement.setBoolean(1, isProcessed);
+            preparedStatement.setBoolean(1, isProcessing);
             preparedStatement.setInt(2, formId);
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -113,7 +114,7 @@ public class FormDAO {
 
 
     // Получение объекта заявки по её ID
-    public static Form getFormById(int id) {
+    public static Form getFormById(int id) throws SQLException  {
         String sql = "SELECT * FROM forms WHERE form_id = ?";
         Form form = null;
 
@@ -130,7 +131,8 @@ public class FormDAO {
                             rs.getString("phone_number"),
                             rs.getString("who_is_needed"),
                             rs.getTimestamp("date_created").toLocalDateTime(), // Преобразование TIMESTAMP -> LocalDateTime
-                            rs.getBoolean("is_processed")
+                            rs.getBoolean("is_processed"),
+                            rs.getBoolean("is_finished")
                     );
                 }
             }
@@ -139,5 +141,27 @@ public class FormDAO {
         }
 
         return form;
+    }
+
+    public static void finishForm(int formId, boolean isFinished) {
+        // SQL-запрос для обновления статуса заявки
+        String sql = "UPDATE forms SET is_finished = ? WHERE form_id = ?";
+
+        // Использование PreparedStatement для безопасного выполнения SQL-запроса
+        try (Connection conn = DataBaseHandler.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, formId);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Статус заявки успешно обновлен.");
+            } else {
+                throw new SQLException("Не удалось найти заявку с ID: " + formId);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

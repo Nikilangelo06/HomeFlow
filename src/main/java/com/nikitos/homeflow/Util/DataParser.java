@@ -31,8 +31,6 @@ public class DataParser {
 
         }
 
-        System.out.println(output);
-
         return output;
     }
 }

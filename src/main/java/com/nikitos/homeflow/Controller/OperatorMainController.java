@@ -235,7 +235,7 @@ public class OperatorMainController {
         ObservableList<Form> allForms = FormDAO.getAllForms();
 
         // Фильтруем только доступные заявки
-        FilteredList<Form> availableForms = allForms.filtered(form -> !form.isProcessing());
+        FilteredList<Form> availableForms = allForms.filtered(form -> !form.isProcessing() && !form.isFinished());
 
         loadForms(availableForms);
     }
@@ -482,7 +482,35 @@ public class OperatorMainController {
                 workers3_ComboBox.promptTextProperty().set("Выберите электрика");
                 workers3_ComboBox.setMinWidth(450);
 
-                workers_VBox.getChildren().addAll(workers0_ComboBox, workers1_ComboBox, workers2_ComboBox, workers3_ComboBox);
+                Map<String, Worker> workerMap = new HashMap<>();
+
+
+                // Добавляем и предварительно связываем Имена работников с объектами Worker
+                if (!workers_0.isEmpty()) {
+                    for(Worker worker : workers_0) {
+                        workerMap.put(worker.getFullName(), worker);
+                    }
+                    workers_VBox.getChildren().add(workers0_ComboBox);
+                }
+                if (!workers_1.isEmpty()) {
+                    for(Worker worker : workers_1) {
+                        workerMap.put(worker.getFullName(), worker);
+                    }
+                    workers_VBox.getChildren().add(workers1_ComboBox);
+                }
+                if (!workers_2.isEmpty()) {
+                    for(Worker worker : workers_2) {
+                        workerMap.put(worker.getFullName(), worker);
+                    }
+                    workers_VBox.getChildren().add(workers2_ComboBox);
+                }
+                if (!workers_3.isEmpty()) {
+                    for(Worker worker : workers_3) {
+                        workerMap.put(worker.getFullName(), worker);
+                    }
+                    workers_VBox.getChildren().add(workers3_ComboBox);
+                }
+
 
                 /* Кнопка Отменить запись мастера */
                 Button deleteForm_Button = new Button("X");
@@ -521,7 +549,31 @@ public class OperatorMainController {
                 completeForm_Button.setOnAction(event -> {
                     int formId = form.getId();
 
-                    for (Worker worker : allWorkersNeeded) {
+                    // Обновляем статус заявки, т.к. она уже обработана
+                    try {
+                        FormDAO.updateFormStatus(formId, false);
+                        FormDAO.finishForm(formId, true);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    // Получаем список выбранных работников, с помощью HashMap, который мы предварительно подготовили
+                    ObservableList<Worker> selectedWorkers = FXCollections.observableArrayList();
+                    for (int i = 0; i < workers_VBox.getChildren().size(); i++) {
+                        ComboBox comboBox = (ComboBox) workers_VBox.getChildren().get(i);
+
+                        Worker selectedWorker = workerMap.get(comboBox.getSelectionModel().getSelectedItem());
+                        selectedWorkers.add(selectedWorker);
+                    }
+
+
+                    for (Worker worker : selectedWorkers) {
+                        try {
+                            // Обновляем стасут работника, т.к. он теперь занят
+                            WorkerDAO.updateWorkerStatus(worker.getId(), false);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
                         WorkerForm workerForm = new WorkerForm(worker.getId(), formId);
                         WorkerFormDAO.addWorkerForm(workerForm);
                     }
