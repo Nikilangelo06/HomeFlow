@@ -417,7 +417,7 @@ public class OperatorMainController {
                 // Настройка RowConstraints
                 RowConstraints dataRow = new RowConstraints();
                 dataRow.setPercentHeight(100);
-                dataRow.setMaxHeight(200);
+                dataRow.setMaxHeight(175);
                 gridPane.getRowConstraints().add(dataRow);
 
                 // Настройка ColumnConstraints

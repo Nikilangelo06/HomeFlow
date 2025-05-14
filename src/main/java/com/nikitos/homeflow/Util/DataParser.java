@@ -13,7 +13,7 @@ public class DataParser {
             if (input.contains("0")) output += "• газовщик ";
             if (input.contains("1")) output += "• сантехник ";
             if (input.contains("2")) output += "• слесарь ";
-            if (input.contains("3")) output += "• сварщик ";
+            if (input.contains("3")) output += "• электрик ";
 
         }
 
