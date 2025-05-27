@@ -54,6 +54,4 @@
             styleClass="button-login-operator"
             onAction="#handleOperatorLogin"/>
 
-
-
 </GridPane>

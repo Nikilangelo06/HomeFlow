@@ -150,7 +150,6 @@
     </Tab>
 
 
-
     <!-- Вкладка -РАБОЧИЕ- -->
     <Tab text="Рабочие" closable="false" onSelectionChanged="#handleWorkersTabSelected" fx:id="workers_Tab">
         <VBox>
@@ -261,7 +260,6 @@
         </VBox>
 
     </Tab>
-
 
 
     <!-- Вкладка -Обработка заявок- -->
@@ -409,7 +407,8 @@
 
     </Tab>
 
-    <!-- Вкладка -Обработка заявок- -->
+
+    <!-- Вкладка -История заявок- -->
     <Tab text="История заявок" closable="false" onSelectionChanged="#handleHistoryFormsTabSelected">
         <VBox>
             <Button textAlignment="CENTER"
@@ -559,6 +558,7 @@
         </VBox>
 
     </Tab>
+
 
 </TabPane>
 
